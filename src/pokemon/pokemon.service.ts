@@ -62,21 +62,26 @@ export class PokemonService {
   async update(term: string, updatePokemonDto: UpdatePokemonDto) {
     const pokemon = await this.findOne(term);
 
-    if ( updatePokemonDto.name )
+    if (updatePokemonDto.name)
       updatePokemonDto.name = updatePokemonDto.name.toLowerCase();
-    
+
     try {
-      await pokemon.updateOne( updatePokemonDto );
+      await pokemon.updateOne(updatePokemonDto);
       return { ...pokemon.toJSON(), ...updatePokemonDto };
-      
     } catch (error) {
-      this.handleExceptions( error );
+      this.handleExceptions(error);
     }
   }
 
   async remove(id: string) {
     // const pokemon = await this.findOne( id );
     // await pokemon.deleteOne();
+
+    // const result = await this.pokemonModel.findByIdAndDelete( id );
+    const { deletedCount } = await this.pokemonModel.deleteOne({ _id: id });
+    if ( deletedCount === 0 )
+      throw new BadRequestException(`Pokemon with id "${ id }" not found`);
+
     return { id };
   }
 
