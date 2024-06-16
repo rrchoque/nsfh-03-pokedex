@@ -20,7 +20,8 @@ FROM node:22.3.0-alpine3.20 AS runner
 # Set working directory
 WORKDIR /usr/src/app
 
-COPY package.json yarn.lock ./
+COPY package.json yarn.lock  ./
+COPY ./public ./public
 
 RUN yarn install --prod
 
