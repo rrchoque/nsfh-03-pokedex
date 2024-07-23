@@ -44,4 +44,6 @@ docker-compose -f docker-compose.prod.yaml --env-file .env.prod up --build
 
 ## Stack usado
 * MongoDB
-* Nest
+* NestJS
+
+![Captura de pantalla](images/captura-001.webp)
