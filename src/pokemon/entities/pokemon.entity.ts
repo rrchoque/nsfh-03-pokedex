@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { ApiProperty } from "@nestjs/swagger";
 import { Document } from "mongoose";
 
 @Schema()
@@ -8,12 +9,14 @@ export class Pokemon extends Document {
     unique: true,
     index: true,
   })
+  @ApiProperty()
   name: string;
 
   @Prop({
     unique: true,
     index: true,
   })
+  @ApiProperty()
   no: number;
 }
 
